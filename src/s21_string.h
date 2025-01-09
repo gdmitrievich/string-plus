@@ -117,7 +117,6 @@ static const char *errorList[] = {
     "State not recoverable",
     "Previous owner died",
     "Interface output queue is full"};
-
 #elif defined(__LINUX__)
 #define MAX_ERRLIST 134
 #define MIN_ERRLIST -1
@@ -277,4 +276,4 @@ s21_size_t s21_strcspn(const char *str1, const char *str2);
 char *s21_strchr(const char *str, int c);
 char *s21_strerror(int errnum);
 
-#endif
+#endif  // S21_STRING_H

@@ -1,5 +1,7 @@
 #include "s21_string.h"
 
+#include <stdio.h>  // ВРЕМЕННО ПОКА НЕТ s21_sprintf
+
 void *s21_memchr(const void *str, int c, s21_size_t n) {
   unsigned char *result = S21_NULL;
   if (str) {
@@ -105,7 +107,8 @@ char *s21_strerror(int errnum) {
   static char result[512] = {'\0'};
 
   if (errnum <= MIN_ERRLIST || errnum >= MAX_ERRLIST) {
-    s21_sprintf(result, "%s%d", ERROR, errnum);
+    // s21_sprintf(result, "%s%d", ERROR, errnum); (РАЗКОММЕНТИТЬ!!!!)
+    sprintf(result, "%s%d", ERROR, errnum);  // ВРЕМЕННО ПОКА НЕТ s21_sprintf
   } else {
     s21_size_t err_length = s21_strlen(errorList[errnum]);
     s21_strncpy(result, errorList[errnum], err_length + 1);
