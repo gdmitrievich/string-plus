@@ -1,11 +1,5 @@
 #include "s21_string.h"
 
-#include <math.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 void *s21_memchr(const void *str, int c, s21_size_t n) {
   unsigned char *result = S21_NULL;
   if (str) {
