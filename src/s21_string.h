@@ -1,7 +1,7 @@
 #ifndef S21_STRING_H
 #define S21_STRING_H
 
-typedef unsigned long long s21_size_t;
+typedef unsigned long s21_size_t;
 #define S21_NULL (void *)0
 
 #if defined(__APPLE__)
@@ -117,7 +117,8 @@ static const char *errorList[] = {
     "State not recoverable",
     "Previous owner died",
     "Interface output queue is full"};
-#elif defined(__LINUX__)
+
+#elif defined(__linux__)
 #define MAX_ERRLIST 134
 #define MIN_ERRLIST -1
 #define ERROR "Unknown error "

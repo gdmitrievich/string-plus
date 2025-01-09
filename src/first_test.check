@@ -1,0 +1,33 @@
+#include <string.h>
+#include <stdio.h>
+
+#include "s21_string.h"
+
+#test strlen_functionality
+
+char str_1[]= "Hello World";
+char str_2[]= "\n Hello \t World";
+char *str_3= "";
+char str_4[]= "Hello \0 World";
+char str_5[]= "\0";
+
+ck_assert_int_eq(s21_strlen(str_1), strlen(str_1));
+ck_assert_int_eq(s21_strlen(str_2), strlen(str_2));
+ck_assert_int_eq(s21_strlen(str_3), strlen(str_3));
+ck_assert_int_eq(s21_strlen(str_4), strlen(str_4));
+ck_assert_int_eq(s21_strlen(str_5), strlen(str_5));
+
+printf("debug --->  s21_strlen(str_1) %lu\n", s21_strlen(str_1));
+printf("debug --->  s21_strlen(str_2) %lu\n", s21_strlen(str_2));
+printf("debug --->  s21_strlen(str_3) %lu\n", s21_strlen(str_3));
+printf("debug --->  s21_strlen(str_4) %lu\n", s21_strlen(str_4));
+printf("debug --->  s21_strlen(str_5) %lu\n", s21_strlen(str_5));
+
+#test strlen_functionality_2
+
+char str_array[][20]={"Privet mir","Privet \t\n","\0","","Privet \0 MIR"};
+
+for(int i = 0; i < 5; i++) {
+    ck_assert_int_eq(s21_strlen(str_array[i]), strlen(str_array[i]));
+    printf("debug --->  s21_strlen(str_array[%d]) %lu\n", i, s21_strlen(str_array[i]));
+}
