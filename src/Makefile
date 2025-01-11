@@ -12,7 +12,7 @@ else
 	OPEN_CMD = open
 endif
 
-all:  s21_string.a
+all:  s21_string.a test
 
 s21_string.a: s21_string.o
 	@ ar r s21_string.a s21_string.o

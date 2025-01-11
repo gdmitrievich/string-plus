@@ -55,6 +55,25 @@ void *s21_memset(void *str, int c, s21_size_t n) {
   return str;
 }
 
+char *s21_strncat(char *dest, const char *src, s21_size_t n) {
+  char *dest_new = dest;
+  if (dest && src) {
+    while (*dest != '\0') {
+      dest += 1;
+    }
+
+    s21_size_t i = 0;
+    while (i < n && *src != '\0') {
+      *dest = *src;
+      dest += 1;
+      src += 1;
+      i += 1;
+    }
+    *dest = '\0';
+  }
+  return dest_new;
+}
+
 char *s21_strchr(const char *str, int c) {
   const char *res = S21_NULL;
   if (str) {
@@ -72,6 +91,48 @@ char *s21_strchr(const char *str, int c) {
     }
   }
   return (char *)res;
+}
+
+int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
+  int result = 0;
+  if (str1) {
+    int flag = 0;
+    if (!str2) {
+      result = 1;
+      flag = 1;
+    }
+    while (!flag && n > 0) {
+      if (*str1 != *str2) {
+        result = *str1 - *str2;
+        flag = 1;
+      }
+      if (!flag && *str1 == '\0') {
+        result = 0;
+        flag = 1;
+      }
+      str1 += 1;
+      str2 += 1;
+      n -= 1;
+    }
+  } else
+    result = (str2) ? -1 : 0;
+  return result;
+}
+
+char *s21_strncpy(char *dest, const char *src, s21_size_t n) {
+  if (dest && src) {
+    s21_size_t i = 0;
+    while (i < n && src[i] != '\0') {
+      dest[i] = src[i];
+      i += 1;
+    }
+
+    while (i < n) {
+      dest[i] = '\0';
+      i += 1;
+    }
+  }
+  return dest;
 }
 
 s21_size_t s21_strcspn(const char *str1, const char *str2) {
@@ -128,67 +189,6 @@ s21_size_t s21_strlen(const char *str) {
     }
   }
   return count;
-}
-
-char *s21_strncat(char *dest, const char *src, s21_size_t n) {
-  char *dest_new = dest;
-  if (dest && src) {
-    while (*dest != '\0') {
-      dest += 1;
-    }
-
-    s21_size_t i = 0;
-    while (i < n && *src != '\0') {
-      *dest = *src;
-      dest += 1;
-      src += 1;
-      i += 1;
-    }
-    *dest = '\0';
-  }
-  return dest_new;
-}
-
-int s21_strncmp(const char *str1, const char *str2, s21_size_t n) {
-  int result = 0;
-  if (str1) {
-    int flag = 0;
-    if (!str2) {
-      result = 1;
-      flag = 1;
-    }
-    while (!flag && n > 0) {
-      if (*str1 != *str2) {
-        result = *str1 - *str2;
-        flag = 1;
-      }
-      if (!flag && *str1 == '\0') {
-        result = 0;
-        flag = 1;
-      }
-      str1 += 1;
-      str2 += 1;
-      n -= 1;
-    }
-  } else
-    result = (str2) ? -1 : 0;
-  return result;
-}
-
-char *s21_strncpy(char *dest, const char *src, s21_size_t n) {
-  if (dest && src) {
-    s21_size_t i = 0;
-    while (i < n && src[i] != '\0') {
-      dest[i] = src[i];
-      i += 1;
-    }
-
-    while (i < n) {
-      dest[i] = '\0';
-      i += 1;
-    }
-  }
-  return dest;
 }
 
 char *s21_strpbrk(const char *str1, const char *str2) {
