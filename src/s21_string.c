@@ -269,7 +269,8 @@ char *s21_strtok(char *str, const char *delim) {
   }
   if (!flag && *next_tok == '\0') {
     flag = 1;
-    result = 0;
+    result = S21_NULL;
+    next_tok = S21_NULL;
   }
 
   tok = next_tok;

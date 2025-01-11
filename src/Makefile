@@ -2,7 +2,7 @@ GCC = gcc
 GCCF = gcc -Wall -Wextra -Werror -std=c11
 CH_CM1 = checkmk clean_mode=1
 CLANG = clang-format -i
-TEST_FILE_NAME = first_test
+TEST_FILE_NAME = s21_test
 
 ifeq ($(shell uname), Linux)
 	TEST_LIB = -lcheck -lm -lrt -lpthread -lsubunit
