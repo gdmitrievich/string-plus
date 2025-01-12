@@ -277,4 +277,9 @@ char *s21_strrchr(const char *str, int c);
 char *s21_strstr(const char *haystack, const char *needle);
 char *s21_strtok(char *str, const char *delim);
 
+char *s21_to_upper(const char *str);
+char *s21_to_lower(const char *str);
+char *s21_insert_str(const char *src, const char *str, s21_size_t start_index);
+char *s21_trim(const char *src, const char *trim_chars);
+
 #endif  // S21_STRING_H
