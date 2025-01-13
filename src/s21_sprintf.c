@@ -1,10 +1,8 @@
-#include "s21_string.h"
-
 #include <math.h>
 #include <stdarg.h>
 #include <stdlib.h>
 
-#include <string.h> //ВРЕМЕННО!
+#include "s21_string.h"
 
 int s21_sprintf(char* str, const char* format, ...) {
   int total_written_chars_to_str = 0;
@@ -530,7 +528,7 @@ s21_size_t convert_double_num_with_precision_to_str(double num,
 
 s21_size_t write_special_double_value_to_str(char* str,
                                              const char* special_value_as_str) {
-  strcpy(str, special_value_as_str);
+  memmove(str, special_value_as_str, s21_strlen(special_value_as_str));
   return s21_strlen(str);
 }
 
