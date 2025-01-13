@@ -264,14 +264,14 @@ s21_size_t append_str_with_wrong_conversion_specification(
     char* str, const p_format_args* pfa_ptr) {
   s21_size_t n_written = 0;
 
-  append_char_to_str(str, '%');
+  write_char_with_null_terminator(str, '%');
   n_written++;
   if (pfa_ptr->specified_format_arg_types.flags)
     n_written += append_flags_to_str(str + n_written, pfa_ptr);
   if (pfa_ptr->specified_format_arg_types.width)
     n_written += write_ull_to_str(pfa_ptr->width, str + n_written);
   if (pfa_ptr->specified_format_arg_types.precision) {
-    append_char_to_str(str, '.');
+    write_char_with_null_terminator(str + n_written, '.');
     n_written++;
     n_written += write_ull_to_str(pfa_ptr->precision, str + n_written);
   }
@@ -282,12 +282,11 @@ s21_size_t append_str_with_wrong_conversion_specification(
   return n_written;
 }
 
-void append_char_to_str(char* str, unsigned char ch) {
+void write_char_with_null_terminator(char* str, unsigned char ch) {
   if (!str) return;
 
-  s21_size_t len = s21_strlen(str);
-  str[len] = ch;
-  str[len + 1] = '\0';
+  str[0] = ch;
+  str[1] = '\0';
 }
 
 s21_size_t append_flags_to_str(char* str, const p_format_args* pfa_ptr) {
@@ -295,14 +294,14 @@ s21_size_t append_flags_to_str(char* str, const p_format_args* pfa_ptr) {
 
   s21_size_t n_written = 0;
   if (pfa_ptr->flags.plus) {
-    append_char_to_str(str, '+');
+    write_char_with_null_terminator(str, '+');
     n_written++;
   } else if (pfa_ptr->flags.whitespace) {
-    append_char_to_str(str, ' ');
+    write_char_with_null_terminator(str, ' ');
     n_written++;
   }
   if (pfa_ptr->flags.minus) {
-    append_char_to_str(str, '-');
+    write_char_with_null_terminator(str + n_written, '-');
     n_written++;
   }
   return n_written;
@@ -312,10 +311,10 @@ s21_size_t write_ull_to_str(unsigned long long int num, char* str) {
   if (!str) return 0;
 
   s21_size_t n = get_digits_count(num);
-  for (s21_size_t i = n; i > 0; --i) {
+  for (s21_size_t i = n, j = 0; i > 0; --i, ++j) {
     unsigned long long int ten_in_power_of_unit = pow_of_ten(i - 1);
     int unit_num = num / ten_in_power_of_unit;
-    append_char_to_str(str, digit_to_char(unit_num));
+    write_char_with_null_terminator(str + j, digit_to_char(unit_num));
     num -= unit_num * ten_in_power_of_unit;
   }
   str[n] = '\0';
@@ -406,7 +405,7 @@ s21_size_t set_modified_vararg_with_its_format_args_as_line(
         meaningfull_part_len += n_written;
       }
     } else {
-      append_char_to_str(str, '-');
+      write_char_with_null_terminator(str, '-');
       meaningfull_part_len += 1;
     }
   }
@@ -440,10 +439,10 @@ s21_size_t add_flag_char_to_str(char* str, const format_flags* flags) {
   s21_size_t n_written = 0;
 
   if (flags->plus) {
-    append_char_to_str(str, '+');
+    write_char_with_null_terminator(str, '+');
     n_written = 1;
   } else if (flags->whitespace) {
-    append_char_to_str(str, ' ');
+    write_char_with_null_terminator(str, ' ');
     n_written = 1;
   }
 
@@ -465,7 +464,7 @@ s21_size_t write_data_to_str(char* str, const p_format_args* pfa_ptr,
     else if (pfa_ptr->specifier.s)
       n_written = write_string_or_wide_string_to_str(str, pfa_ptr, vararg_ptr);
   } else if (pfa_ptr->specifier.percentage) {
-    append_char_to_str(str, '%');
+    write_char_with_null_terminator(str, '%');
     n_written += 1;
   }
 
@@ -503,7 +502,7 @@ s21_size_t convert_double_num_with_precision_to_str(double num,
   s21_size_t n_written = n_int_part_digits;
 
   if (precision > 0) {
-    append_char_to_str(write_position, '.');
+    write_char_with_null_terminator(write_position, '.');
     write_position++;
     n_written++;
 
@@ -631,7 +630,7 @@ s21_size_t write_char_or_wide_char_to_str(
   bool success = true;
 
   if (!length_modifier->l) {
-    append_char_to_str(str, (unsigned char)vararg_ptr->value.ull);
+    write_char_with_null_terminator(str, (unsigned char)vararg_ptr->value.ull);
     ++n_written;
   } else {
     s21_size_t n_chars_written = write_to_str_converted_chars_from_wide_char(
@@ -709,7 +708,7 @@ s21_size_t write_wide_char_string_parsed_to_basic_string_to_str(
       if (n_bytes_to_write_left < n) can_write_entire_wc = false;
       for (s21_size_t j = 0; j < n && can_write_entire_wc;
            ++j, --n_bytes_to_write_left) {
-        append_char_to_str(str++, buf[j]);
+        write_char_with_null_terminator(str++, buf[j]);
         n_written += 1;
       }
     } else {

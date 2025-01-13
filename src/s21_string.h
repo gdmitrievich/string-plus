@@ -142,7 +142,7 @@ void set_default_precision_for_specifier(unsigned* precision,
 
 s21_size_t append_str_with_wrong_conversion_specification(
     char* str, const p_format_args* pfa_ptr);
-void append_char_to_str(char* str, unsigned char ch);
+void write_char_with_null_terminator(char* str, unsigned char ch);
 s21_size_t append_flags_to_str(char* str, const p_format_args* pfa_ptr);
 /// @brief Writes 'num' converted to its character representation to 'str'.
 /// @return Returns number of written characters (number of 'num' digits).
