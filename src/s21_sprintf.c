@@ -361,10 +361,12 @@ sprintf_vararg retrieve_vararg_corresponding_to_specifier(
           (long long int*)&vararg.value.ull, va_arg(*s21_sprintf_va_list, int));
     else if (pfa_ptr->length_modifier.l)
       vararg.is_positive = check_is_num_positive_and_set_its_module_value(
-          (long long int*)&vararg.value.ull, va_arg(*s21_sprintf_va_list, long int));
+          (long long int*)&vararg.value.ull,
+          va_arg(*s21_sprintf_va_list, long int));
     else if (pfa_ptr->length_modifier.h)
       vararg.is_positive = check_is_num_positive_and_set_its_module_value(
-          (long long int*)&vararg.value.ull, (short int)va_arg(*s21_sprintf_va_list, int));
+          (long long int*)&vararg.value.ull,
+          (short int)va_arg(*s21_sprintf_va_list, int));
   } else if (pfa_ptr->specifier.f) {
     vararg.value.d = va_arg(*s21_sprintf_va_list, double);
     vararg.is_positive = vararg.value.d >= 0;
