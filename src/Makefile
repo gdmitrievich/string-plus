@@ -15,16 +15,16 @@ endif
 all:  s21_string.a test
 
 s21_string.a: s21_string.o
-	@ ar r s21_string.a s21_string.o
+	@ ar r s21_string.a *.o
 	@ ranlib s21_string.a
 	@ rm -f s21_string.o
 
-s21_string.o: clang-format s21_string.c s21_string.h
-	@ $(GCCF) -c s21_string.c -o s21_string.o
+s21_string.o:
+	$(GCCF) -c  *.c
 
-clang-format: s21_string.c s21_string.h
+clang-format: 
 	@ cp ../materials/linters/.clang-format .
-	@ $(CLANG) s21_string.c s21_string.h
+	@ $(CLANG) s21_string.c *.h
 
 
 test: $(TEST_FILE_NAME).c
@@ -55,6 +55,6 @@ clean:
 	@ rm -f $(TEST_FILE_NAME).info
 
 	@ rm -f s21_string.a
-	@ rm -f s21_string.o
+	@ rm -f *.o
 
 rebuild: clean all
