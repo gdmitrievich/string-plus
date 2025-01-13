@@ -578,6 +578,23 @@ void round_double_given_on_str(char* double_as_str, char* fract_part_ptr,
   *(rounding_point_ptr - has_dot_right_before_rounding_point) = '\0';
 }
 
+void* memmove(void* dest, const void* src, s21_size_t count) {
+  if (!dest || !src || dest == src) return dest;
+  char* d = (char*)dest;
+  const char* s = (const char*)src;
+
+  if (dest < src || src + count <= dest) {
+    s21_memcpy(dest, src, count);
+  } else {
+    while (count > 0) {
+      d[count - 1] = s[count - 1];
+      count--;
+    }
+  }
+
+  return dest;
+}
+
 int char_to_digit(char ch) { return ch - '0'; }
 
 char digit_to_char(int digit) { return digit + '0'; }
