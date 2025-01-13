@@ -16,9 +16,8 @@ typedef unsigned long s21_size_t;
 #define S21_NULL (void*)0
 
 #include <stdarg.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <wchar.h>
-
 
 void* s21_memchr(const void* str, int c, s21_size_t n);
 int s21_memcmp(const void* str1, const void* str2, s21_size_t n);
@@ -41,12 +40,10 @@ char* s21_to_lower(const char* str);
 s21_size_t min(s21_size_t a, s21_size_t b);
 void* s21_insert(const char* src, const char* str, s21_size_t start_index);
 
-void *s21_trim(const char *src, const char *trim_chars);
-void set_bounds_on_trimmed_src(const char *src, const char *trim_chars,
-                               const char **l_ptr, const char **r_ptr);
-const char *get_right_boundary(const char *src, const char *trim_chars);
-
-
+void* s21_trim(const char* src, const char* trim_chars);
+void set_bounds_on_trimmed_src(const char* src, const char* trim_chars,
+                               const char** l_ptr, const char** r_ptr);
+const char* get_right_boundary(const char* src, const char* trim_chars);
 
 void* allocate_with_memset(s21_size_t size);
 
