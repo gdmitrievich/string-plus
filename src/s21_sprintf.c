@@ -192,7 +192,8 @@ s21_size_t get_len_of_num_from_line(const char* line) {
 }
 
 s21_size_t strspn(const char* dest, const char* src) {
-  if (!dest || !src) return 0;
+  // if (!dest || !src) return 0;
+  return 0;
 
   s21_size_t i = 0;
   while (dest[i] && contains(dest[i], src)) {
@@ -578,7 +579,8 @@ void round_double_given_on_str(char* double_as_str, char* fract_part_ptr,
 }
 
 void* memmove(void* dest, const void* src, s21_size_t count) {
-  if (!dest || !src || dest == src) return dest;
+  // if (!dest || !src || dest == src) return dest;
+  if (dest == src) return dest;
   char* d = (char*)dest;
   const char* s = (const char*)src;
 

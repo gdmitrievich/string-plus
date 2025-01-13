@@ -22,7 +22,7 @@ char *s21_to_lower(const char *str) {
 	if (!str) return S21_NULL;
   s21_size_t len = s21_strlen(str);
   char *result = allocate_with_memset(len + 1);
-  if (result == NULL) {
+  if (result != NULL) {
 	for (s21_size_t i = 0; i < len; i++) {
     if (str[i] >= 'A' && str[i] <= 'Z') {
       result[i] = str[i] + ('a' - 'A');
@@ -85,7 +85,7 @@ void *s21_trim(const char *src, const char *trim_chars) {
 
 void set_bounds_on_trimmed_src(const char *src, const char *trim_chars,
                                const char **l_ptr, const char **r_ptr) {
-  *l_ptr = src + s21_strspn(src, trim_chars);
+  *l_ptr = src + strspn(src, trim_chars);
   *r_ptr = get_right_boundary(src, trim_chars);
 }
 
