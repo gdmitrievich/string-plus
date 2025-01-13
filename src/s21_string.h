@@ -123,6 +123,9 @@ s21_size_t set_width_or_precision_arg_from_str(
 s21_size_t read_positive_num_from_line(unsigned long long int* read_num_ptr,
                                        const char* line);
 s21_size_t get_len_of_num_from_line(const char* line);
+
+s21_size_t strspn(const char* dest, const char* src);
+
 unsigned long long int pow_of_ten(unsigned power);
 
 bool is_dot_char(char ch);

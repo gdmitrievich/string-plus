@@ -193,6 +193,16 @@ s21_size_t get_len_of_num_from_line(const char* line) {
   return strspn(line, INT_CHARS);
 }
 
+s21_size_t strspn(const char* dest, const char* src) {
+  if (!dest || !src) return 0;
+
+  s21_size_t i = 0;
+  while (dest[i] && contains(dest[i], src)) {
+    i++;
+  }
+  return i;
+}
+
 unsigned long long int pow_of_ten(unsigned power) {
   unsigned long long int res = 1;
   while (power > 0) {
