@@ -1,9 +1,9 @@
 #include "s21_string_extra.h"
+
 #include "s21_string.h"
 
 char *s21_to_upper(const char *str) {
-  if (!str)
-    return S21_NULL;
+  if (!str) return S21_NULL;
   s21_size_t len = s21_strlen(str);
   char *result = allocate_with_memset(len + 1);
   if (result) {
@@ -21,8 +21,7 @@ char *s21_to_upper(const char *str) {
 }
 
 char *s21_to_lower(const char *str) {
-  if (!str)
-    return S21_NULL;
+  if (!str) return S21_NULL;
   s21_size_t len = s21_strlen(str);
   char *result = allocate_with_memset(len + 1);
   if (result != NULL) {
@@ -65,8 +64,7 @@ void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
 }
 
 void *s21_trim(const char *src, const char *trim_chars) {
-  if (!src)
-    return S21_NULL;
+  if (!src) return S21_NULL;
 
   const char *l_ptr = S21_NULL;
   const char *r_ptr = S21_NULL;
@@ -95,9 +93,7 @@ void set_bounds_on_trimmed_src(const char *src, const char *trim_chars,
 const char *get_right_boundary(const char *src, const char *trim_chars) {
   s21_size_t l = s21_strlen(src);
   s21_size_t i = l;
-  while (i > 0 && contains(src[i - 1], trim_chars))
-    --i;
-  if (i == 0)
-    i = l;
+  while (i > 0 && contains(src[i - 1], trim_chars)) --i;
+  if (i == 0) i = l;
   return src + i;
 }

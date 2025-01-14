@@ -2,8 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "s21_string.h"
-#include "s21_string_extra.h"
+#include "../src/s21_string.h"
+#include "../src/s21_string_extra.h"
 
 #test test_s21_memchr
 

@@ -13,4 +13,4 @@ void set_bounds_on_trimmed_src(const char *src, const char *trim_chars,
                                const char **l_ptr, const char **r_ptr);
 const char *get_right_boundary(const char *src, const char *trim_chars);
 
-#endif // S21_STRING_EXTRA_H
+#endif  // S21_STRING_EXTRA_H

@@ -515,8 +515,7 @@ char *s21_strtok(char *str, const char *delim) {
     next_tok += 1;
   }
 
-  if (flag == 0)
-    result = tok;
+  if (flag == 0) result = tok;
 
   return result;
 }

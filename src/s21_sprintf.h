@@ -39,10 +39,9 @@ bool is_flag_arg(char ch);
 void set_flag_arg(char format_char, p_format_args *pfa_ptr);
 
 bool is_digit_char(char ch);
-s21_size_t
-set_width_or_precision_arg_from_str(const char *str,
-                                    unsigned *where_to_store_read_num,
-                                    bool *is_format_arg_type_specified);
+s21_size_t set_width_or_precision_arg_from_str(
+    const char *str, unsigned *where_to_store_read_num,
+    bool *is_format_arg_type_specified);
 /// @brief Convert a sequence of character digits that can be stored on unsigned
 /// long long int type. Starts from the first character pointed by 'line'.
 /// @param read_num_ptr Pointer to the number that will store converted value.
@@ -68,9 +67,8 @@ void set_default_precision_for_specifier(unsigned *precision,
                                          format_specifiers *specifier,
                                          bool *is_precision_set);
 
-s21_size_t
-append_str_with_wrong_conversion_specification(char *str,
-                                               const p_format_args *pfa_ptr);
+s21_size_t append_str_with_wrong_conversion_specification(
+    char *str, const p_format_args *pfa_ptr);
 void write_char_with_null_terminator(char *str, unsigned char ch);
 s21_size_t append_flags_to_str(char *str, const p_format_args *pfa_ptr);
 /// @brief Writes 'num' converted to its character representation to 'str'.
@@ -81,17 +79,15 @@ s21_size_t get_digits_count(unsigned long long int num);
 s21_size_t append_str_with_vararg_modified_with_its_format_args_as_line(
     char *str, va_list *s21_sprintf_va_list, const p_format_args *pfa_ptr);
 
-sprintf_vararg
-retrieve_vararg_corresponding_to_specifier(va_list *s21_sprintf_va_list,
-                                           const p_format_args *pfa_ptr);
+sprintf_vararg retrieve_vararg_corresponding_to_specifier(
+    va_list *s21_sprintf_va_list, const p_format_args *pfa_ptr);
 
 bool check_is_num_positive_and_set_its_module_value(long long *place_to_set,
                                                     long long num);
 
-s21_size_t
-set_modified_vararg_with_its_format_args_as_line(char *line_to_set,
-                                                 sprintf_vararg *vararg_ptr,
-                                                 const p_format_args *pfa_ptr);
+s21_size_t set_modified_vararg_with_its_format_args_as_line(
+    char *line_to_set, sprintf_vararg *vararg_ptr,
+    const p_format_args *pfa_ptr);
 
 bool is_nan_double(const format_specifiers *specifier,
                    const sprintf_vararg *vararg_ptr);
@@ -155,10 +151,9 @@ s21_size_t write_insignificant_zeroes_of_integer_num(char *str,
 
 /// @return Returns the number of written chars on success, otherwise
 /// (s21_size_t)-1.
-s21_size_t
-write_char_or_wide_char_to_str(char *str,
-                               const length_modifiers *length_modifier,
-                               const sprintf_vararg *vararg_ptr);
+s21_size_t write_char_or_wide_char_to_str(
+    char *str, const length_modifiers *length_modifier,
+    const sprintf_vararg *vararg_ptr);
 
 /// @return Returns the number of written bytes on multibyte sequence on
 /// success, otherwise (s21_size_t)-1.
@@ -182,4 +177,4 @@ s21_size_t write_wide_char_string_parsed_to_basic_string_to_str(
 void format_str_width(char *str, const p_format_args *pfa_ptr,
                       s21_size_t meaningfull_part_len);
 
-#endif // S21_SPRINTF_H
+#endif  // S21_SPRINTF_H
