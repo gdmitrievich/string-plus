@@ -1,3 +1,4 @@
+#include "s21_string_extra.h"
 #include "s21_string.h"
 
 char *s21_to_upper(const char *str) {
@@ -14,7 +15,7 @@ char *s21_to_upper(const char *str) {
   }
   result[len] = '\0';
   }
-  
+
   return result;
 }
 
@@ -32,7 +33,7 @@ char *s21_to_lower(const char *str) {
   }
   result[len] = '\0';
   }
-  
+
   return result;
 }
 
