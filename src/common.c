@@ -8,7 +8,7 @@ void *s21_allocate_with_memset(s21_size_t size) {
   return ptr;
 }
 
-bool contains(char ch, const char *char_array) {
+bool s21_contains(char ch, const char *char_array) {
   bool is_found = false;
   while (*char_array && !is_found) {
     if (*char_array == ch) is_found = true;

@@ -70,9 +70,9 @@ void *s21_trim(const char *src, const char *trim_chars) {
   const char *l_ptr = S21_NULL;
   const char *r_ptr = S21_NULL;
   if (trim_chars) {
-    set_bounds_on_trimmed_src(src, trim_chars, &l_ptr, &r_ptr);
+    s21_set_bounds_on_trimmed_src(src, trim_chars, &l_ptr, &r_ptr);
   } else {
-    set_bounds_on_trimmed_src(src, " \t\n", &l_ptr, &r_ptr);
+    s21_set_bounds_on_trimmed_src(src, " \t\n", &l_ptr, &r_ptr);
   }
 
   s21_size_t n = r_ptr - l_ptr;
@@ -85,16 +85,16 @@ void *s21_trim(const char *src, const char *trim_chars) {
   return (void *)trimmed_src;
 }
 
-void set_bounds_on_trimmed_src(const char *src, const char *trim_chars,
-                               const char **l_ptr, const char **r_ptr) {
-  *l_ptr = src + strspn(src, trim_chars);
-  *r_ptr = get_right_boundary(src, trim_chars);
+void s21_set_bounds_on_trimmed_src(const char *src, const char *trim_chars,
+                                   const char **l_ptr, const char **r_ptr) {
+  *l_ptr = src + s21_strspn(src, trim_chars);
+  *r_ptr = s21_get_right_boundary(src, trim_chars);
 }
 
-const char *get_right_boundary(const char *src, const char *trim_chars) {
+const char *s21_get_right_boundary(const char *src, const char *trim_chars) {
   s21_size_t l = s21_strlen(src);
   s21_size_t i = l;
-  while (i > 0 && contains(src[i - 1], trim_chars)) --i;
+  while (i > 0 && s21_contains(src[i - 1], trim_chars)) --i;
   if (i == 0) i = l;
   return src + i;
 }

@@ -10,7 +10,7 @@ typedef union {
 } value;
 
 typedef struct {
-  value value;       // Contains only positive number.
+  value value;       // s21_contains only positive number.
   bool is_positive;  // Hold the sign of the number.
 } sprintf_vararg;
 
