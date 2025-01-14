@@ -632,10 +632,10 @@ START_TEST(long_int_overflow) {
   char actual_str[BUFFSIZE];
   init_compared_strs(expected_str, actual_str);
   const char* format = "%ld";
-  unsigned long int arg = LONG_MAX + 1;
-  int expected_n_written_chars = sprintf(expected_str, format, arg);
+  long int arg = LONG_MAX;
+  int expected_n_written_chars = sprintf(expected_str, format, arg + 1);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, format, arg);
+  int actual_n_written_chars = s21_sprintf(actual_str, format, arg + 1);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1482,7 +1482,8 @@ int main(void) {
   srunner_add_suite(sr, one_conversion_specification());
   srunner_add_suite(sr, two_or_more_conversion_specifications());
 
-  srunner_run_all(sr, CK_VERBOSE);
+  // srunner_run_all(sr, CK_VERBOSE);
+  srunner_run_all(sr, CK_NORMAL);
   n_failed = srunner_ntests_failed(sr);
 
   srunner_free(sr);
