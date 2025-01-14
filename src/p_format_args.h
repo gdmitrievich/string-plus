@@ -17,7 +17,7 @@ typedef struct {
 
 typedef struct {
   bool flags, width, precision, length, specifier;
-} specified_format_arg_types;  // [flags][width][.precision][length]specifier.
+} specified_format_arg_types; // [flags][width][.precision][length]specifier.
 
 typedef struct {
   format_flags flags;
@@ -29,7 +29,7 @@ typedef struct {
   specified_format_arg_types specified_format_arg_types;
 } p_format_args;
 
-bool is_signed_number(const format_specifiers* specifier);
-bool is_number(const format_specifiers* specifier);
+bool is_signed_number(const format_specifiers *specifier);
+bool is_number(const format_specifiers *specifier);
 
-#endif  // P_FORMAT_ARGS_H
+#endif // P_FORMAT_ARGS_H

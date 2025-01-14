@@ -1,13 +1,11 @@
 #include "s21_string.h"
 
-
-
 #if defined(__APPLE__)
 #define MAX_ERRLIST 107
 #define MIN_ERRLIST -1
 #define ERROR "Unknown error: "
 
-static const char* errorList[] = {
+static const char *errorList[] = {
     "Undefined error: 0",
     "Operation not permitted",
     "No such file or directory",
@@ -121,7 +119,7 @@ static const char* errorList[] = {
 #define MIN_ERRLIST -1
 #define ERROR "Unknown error "
 
-static const char* errorList[] = {
+static const char *errorList[] = {
     "Success",
     "Operation not permitted",
     "No such file or directory",
@@ -517,7 +515,8 @@ char *s21_strtok(char *str, const char *delim) {
     next_tok += 1;
   }
 
-  if (flag == 0) result = tok;
+  if (flag == 0)
+    result = tok;
 
   return result;
 }

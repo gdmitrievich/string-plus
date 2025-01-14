@@ -5,13 +5,13 @@
 
 typedef union {
   unsigned long long ull;
-  const void* cvptr;
+  const void *cvptr;
   double d;
 } value;
 
 typedef struct {
-  value value;       // Contains only positive number.
-  bool is_positive;  // Hold the sign of the number.
+  value value;      // Contains only positive number.
+  bool is_positive; // Hold the sign of the number.
 } sprintf_vararg;
 
-#endif  // SPRINTF_VARARG_H
+#endif // SPRINTF_VARARG_H
