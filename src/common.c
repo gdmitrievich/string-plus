@@ -2,7 +2,7 @@
 
 #include "s21_string.h"
 
-void *allocate_with_memset(s21_size_t size) {
+void *s21_allocate_with_memset(s21_size_t size) {
   void *ptr = malloc(size);
   if (ptr) s21_memset(ptr, 0, size);
   return ptr;
