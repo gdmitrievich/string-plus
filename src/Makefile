@@ -20,7 +20,7 @@ s21_string.a: s21_string.o
 	@ rm -f s21_string.o
 
 s21_string.o:
-	$(GCCF) -c  *.c
+	$(GCCF) -c s21_string.c s21_string_extra.c common.c p_format_args.c s21_sprintf.c
 
 clang-format: 
 	@ cp ../materials/linters/.clang-format .
@@ -37,7 +37,7 @@ $(TEST_FILE_NAME).c: $(TEST_FILE_NAME).check
 	@ $(CLANG) $(TEST_FILE_NAME).c
 
 gcov_report: $(TEST_FILE_NAME).c
-	@ $(GCC) --coverage $(TEST_FILE_NAME).c s21_string.c -o $(TEST_FILE_NAME) $(TEST_LIB)
+	@ $(GCC) --coverage $(TEST_FILE_NAME).c s21_string.c s21_string_extra.c s21_sprintf.c common.c p_format_args.c  ../tests/s21_trim_tests.c -o $(TEST_FILE_NAME) $(TEST_LIB)
 	@ ./$(TEST_FILE_NAME)
 	@ lcov -t "$(TEST_FILE_NAME)" -o $(TEST_FILE_NAME).info -c -d .
 	@ genhtml -o report $(TEST_FILE_NAME).info

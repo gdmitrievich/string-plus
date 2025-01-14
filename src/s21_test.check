@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "s21_string.h"
+#include "s21_string_extra.h"
 
 #test test_s21_memchr
 
@@ -34,46 +36,51 @@ for (int i = 0; i < 5; i++) {
 
 #test test_s21_memcpy
 
-char str[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
+char str_1[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
+char str_2[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
 int num[] = {2, 4, 20, 30, 0};
 
 for (int i = 0; i < 4; i++) {
-  ck_assert_mem_eq(s21_memcpy(str[i], str[i + 1], num[i]),
-                   memcpy(str[i], str[i + 1], num[i]), 30);
-  printf("***debug --->  s21_memcpy(str[i], str[i+1], num[i]) = %p, i = %d\n",
-         s21_memcpy(str[i], str[i + 1], num[i]), i);
+  ck_assert_mem_eq(s21_memcpy(str_1[i], str_1[i + 1], num[i]),
+                   memcpy(str_2[i], str_2[i + 1], num[i]), 30);
+  printf(
+      "***debug --->  s21_memcpy(str_1[i], str_1[i+1], num[i]) = %p, i = %d\n",
+      s21_memcpy(str_1[i], str_1[i + 1], num[i]), i);
 }
 
 #test test_s21_memset
 
-char str[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
+char str_1[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
+char str_2[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
 char ch[] = {'-', 'H', 'l', 'p', '\n'};
 int num[] = {2, 4, 20, 30, 0};
 
 for (int i = 0; i < 5; i++) {
-  ck_assert_mem_eq(s21_memset(str[i], ch[i], num[i]),
-                   memset(str[i], ch[i], num[i]), 30);
+  ck_assert_mem_eq(s21_memset(str_1[i], ch[i], num[i]),
+                   memset(str_2[i], ch[i], num[i]), 30);
 
   printf(
-      "***debug --->  s21_memset(str[i], ch[i], num[i]) = %p, i = %d, str = "
+      "***debug --->  s21_memset(str_1[i], ch[i], num[i]) = %p, i = %d, str = "
       "%s\n",
-      s21_memset(str[i], ch[i], num[i]), i, str[i]);
+      s21_memset(str_1[i], ch[i], num[i]), i, str_1[i]);
 }
 
 #test test_s21_strncat
 
-char str[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
+char str_1[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
+char str_2[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
 int num[] = {2, 4, 20, 0, 0};
 
 for (int i = 0; i < 4; i++) {
-  ck_assert_mem_eq(s21_strncat(str[i], str[i + 1], num[i]),
-                   strncat(str[i], str[i + 1], num[i]), 30);
+  ck_assert_mem_eq(s21_strncat(str_1[i], str_1[i + 1], num[i]),
+                   strncat(str_2[i], str_2[i + 1], num[i]), 30);
 
   printf(
-      "***debug --->  s21_strncat(str[i], str[i+1], num[i]) = %p, i = %d, str "
+      "***debug --->  s21_strncat(str_1[i], str_1[i+1], num[i]) = %p, i = %d, "
+      "str "
       "= "
       "%s\n",
-      s21_strncat(str[i], str[i + 1], num[i]), i, str[i]);
+      s21_strncat(str_1[i], str_1[i + 1], num[i]), i, str_1[i]);
 }
 
 #test test_s21_strchr
@@ -84,10 +91,9 @@ char ch[] = {'\0', 'H', 'l', 'p', '\t'};
 for (int i = 0; i < 5; i++) {
   ck_assert_ptr_eq(s21_strchr(str[i], ch[i]), strchr(str[i], ch[i]));
 
-  printf(
-      "***debug --->  s21_strchr(str[i], ch[i]) = %p, i = %d, ch= %c, str = "
-      "%s\n",
-      s21_strchr(str[i], ch[i]), i, ch[i], s21_strchr(str[i], ch[i]));
+  printf("***debug --->  s21_strchr(str[i], ch[i]) = %p, i = %d, ch= %c, str = "
+         "%s\n",
+         s21_strchr(str[i], ch[i]), i, ch[i], s21_strchr(str[i], ch[i]));
 }
 
 #test test_s21_strncmp
@@ -106,14 +112,16 @@ for (int i = 0; i < 5; i++) {
 
 #test test_s21_strncpy
 
-char str[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
+char str_1[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
+char str_2[][30] = {"aatroxiv", "lenwoodr", "licoricg", "vinephil", "livardce"};
 int num[] = {2, 4, 20, 30, 0};
 
 for (int i = 0; i < 4; i++) {
-  ck_assert_mem_eq(s21_strncpy(str[i], str[i + 1], num[i]),
-                   strncpy(str[i], str[i + 1], num[i]), 30);
-  printf("***debug --->  s21_strncpy(str[i], str[i+1], num[i]) = %p, i = %d\n",
-         s21_strncpy(str[i], str[i + 1], num[i]), i);
+  ck_assert_mem_eq(s21_strncpy(str_1[i], str_1[i + 1], num[i]),
+                   strncpy(str_2[i], str_2[i + 1], num[i]), 30);
+  printf(
+      "***debug --->  s21_strncpy(str_1[i], str_2[i+1], num[i]) = %p, i = %d\n",
+      s21_strncpy(str_1[i], str_1[i + 1], num[i]), i);
 }
 
 #test test_s21_strcspn
@@ -123,16 +131,25 @@ char str[][30] = {"aatroxiv", "lenwoodr", "_icoricg", "vinephi", "_ivardce"};
 for (int i = 0; i < 4; i++) {
   ck_assert_int_eq(s21_strcspn(str[i], str[i + 1]),
                    strcspn(str[i], str[i + 1]));
-  printf("***debug --->  s21_strcspn(str[i], str[i+1]) = %d, i = %d\n",
+  printf("***debug --->  s21_strcspn(str[i], str[i+1]) = %ld, i = %d\n",
          s21_strcspn(str[i], str[i + 1]), i);
 }
 
 #test test_s21_strerror
 
-for (int i = 0; i < 140; i += 14) {
-  ck_assert_int_eq(strcmp(s21_strerror(i), strerror(i)), 0);
+for (int i = 0; i < 134; i += 1) {
+  ck_assert_str_eq(s21_strerror(i), strerror(i));
 
   printf("***debug --->  s21_strerror(i) = %s, i = %d\n", s21_strerror(i), i);
+}
+
+for (int i = -10; i < 140; i += 1) {
+  if (i > 3 && i < 130)
+    continue;
+  printf("___***debug --->  s21_strerror(i) = \"%s\", i = %d\n",
+         s21_strerror(i), i);
+  printf("___***debug --->      strerror(i) = \"%s\", i = %d\n", strerror(i),
+         i);
 }
 
 #test test_s21_strlen
@@ -201,26 +218,116 @@ char *res_1 = s21_strtok(src_1, delim);
 char *res_2 = strtok(src_2, delim);
 
 while (res_1 && res_2) {
-  ck_assert_int_eq(strcmp(res_1, res_2), 0);
-  printf(
-      "***debug in while --->  s21_strtok(src_1, delim) = %p, res = |%s|\n"
-      "***debug in while --->  strtok(src_2, delim) = %p, res = |%s|\n",
-      res_1, res_1, res_2, res_2);
+  ck_assert_str_eq(res_1, res_2);
+  printf("***debug in while --->  s21_strtok(src_1, delim) = %p, res = |%s|\n"
+         "***debug in while --->  strtok(src_2, delim) = %p, res = |%s|\n",
+         res_1, res_1, res_2, res_2);
   res_1 = s21_strtok(S21_NULL, delim);
   res_2 = strtok(NULL, delim);
 }
 ck_assert_ptr_eq(res_1, res_2);
 
-printf(
-    "***debug --->  s21_strtok(src_1, delim) = %p\n"
-    "***debug --->  strtok(src_2, delim) = %p \n",
-    res_1, res_2);
+printf("***debug --->  s21_strtok(src_1, delim) = %p\n"
+       "***debug --->  strtok(src_2, delim) = %p \n",
+       res_1, res_2);
 
 res_1 = s21_strtok(S21_NULL, delim);
 res_2 = strtok(NULL, delim);
 ck_assert_ptr_eq(res_1, res_2);
 
-printf(
-    "***debug --->  s21_strtok(src_1, delim) = %p\n"
-    "***debug --->  strtok(src_2, delim) = %p \n",
-    res_1, res_2);
+printf("***debug --->  s21_strtok(src_1, delim) = %p\n"
+       "***debug --->  strtok(src_2, delim) = %p \n",
+       res_1, res_2);
+
+#test test_s21_to_upper
+
+char src_1[] = "qwertyuiopasdfghjklzxcvbnm[];',./";
+char src_2[] = " !\"#$%&'()*+,-./"
+               "0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`"
+               "abcdefghijklmnopqrstuvwxyz{|}~";
+
+char expected_1[] = "QWERTYUIOPASDFGHJKLZXCVBNM[];',./";
+char expected_2[] = " !\"#$%&'()*+,-./"
+                    "0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`"
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZ{|}~";
+
+char *str_after_s21_to_upper_1 = s21_to_upper(src_1);
+
+if (str_after_s21_to_upper_1) {
+  ck_assert_str_eq(expected_1, str_after_s21_to_upper_1);
+  printf("***debug --->  s21__to_upper(str_after_s21_to_upper_1) = %s\n",
+         str_after_s21_to_upper_1);
+  free(str_after_s21_to_upper_1);
+}
+
+char *str_after_s21_to_upper_2 = s21_to_upper(src_2);
+if (str_after_s21_to_upper_2) {
+  ck_assert_str_eq(expected_2, str_after_s21_to_upper_2);
+
+  printf("***debug --->  s21__to_upper(str_after_s21_to_upper_2) = %s\n",
+         str_after_s21_to_upper_2);
+
+  free(str_after_s21_to_upper_2);
+}
+
+#test test_s21_to_lower
+
+char src_1[] = "QWERTYUIOPASDFGHJKLZXCVBNM[];',./";
+char src_2[] = " !\"#$%&'()*+,-./"
+               "0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`"
+               "abcdefghijklmnopqrstuvwxyz{|}~";
+
+char expected_1[] = "qwertyuiopasdfghjklzxcvbnm[];',./";
+char expected_2[] = " !\"#$%&'()*+,-./"
+                    "0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[]^_`"
+                    "abcdefghijklmnopqrstuvwxyz{|}~";
+
+char *str_after_s21_to_lower_1 = s21_to_lower(src_1);
+if (str_after_s21_to_lower_1) {
+  ck_assert_str_eq(expected_1, str_after_s21_to_lower_1);
+
+  printf("***debug --->  s21__to_lower(str_after_s21_to_lower_1) = %s\n",
+         str_after_s21_to_lower_1);
+  free(str_after_s21_to_lower_1);
+}
+
+char *str_after_s21_to_lower_2 = s21_to_lower(src_2);
+if (str_after_s21_to_lower_2) {
+  ck_assert_str_eq(expected_2, str_after_s21_to_lower_2);
+
+  printf("***debug --->  s21__to_lower(str_after_s21_to_lower_2) = %s\n",
+         str_after_s21_to_lower_2);
+
+  free(str_after_s21_to_lower_2);
+}
+
+#test test_s21_insert
+
+char *src_1 = "aatroxiv, lenwoodr, licoricg, vinephil, livardce";
+char *src_2 = "Insert into __ here!";
+
+char *str_1 = "Hello! It is ";
+char *str_2 = "OK";
+
+char *expected_1 =
+    "Hello! It is aatroxiv, lenwoodr, licoricg, vinephil, livardce";
+char *expected_2 = "Insert into _OK_ here!";
+
+char *res_1 = s21_insert(str_1, src_1, 0);
+printf("***debug ---> char* res_1 = s21_insert(str_1, src_1, 0) = %p\n", res_1);
+
+if (res_1) {
+  ck_assert_str_eq(res_1, expected_1);
+  printf("***debug --->  s21__insert(src_1, str_1, 0) = %s\n", res_1);
+  free(res_1);
+}
+
+char *res_2 = s21_insert(src_2, str_2, 13);
+printf("***debug ---> char* res_2 = s21_insert(src_2, str_2, 13) = %p\n",
+       res_2);
+
+if (res_2) {
+  ck_assert_str_eq(res_2, expected_2);
+  printf("***debug --->  s21__insert(src_2, str_2, 0) = %s\n", res_2);
+  free(res_2);
+}
