@@ -313,8 +313,8 @@ char *expected_1 =
     "Hello! It is aatroxiv, lenwoodr, licoricg, vinephil, livardce";
 char *expected_2 = "Insert into _OK_ here!";
 
-char *res_1 = s21_insert(str_1, src_1, 0);
-printf("***debug ---> char* res_1 = s21_insert(str_1, src_1, 0) = %p\n", res_1);
+char *res_1 = s21_insert(src_1, str_1, 0);
+printf("***debug ---> char* res_1 = s21_insert(str_1, src_1, 0) = %s\n", res_1);
 
 if (res_1) {
   ck_assert_str_eq(res_1, expected_1);
@@ -323,7 +323,7 @@ if (res_1) {
 }
 
 char *res_2 = s21_insert(src_2, str_2, 13);
-printf("***debug ---> char* res_2 = s21_insert(src_2, str_2, 13) = %p\n",
+printf("***debug ---> char* res_2 = s21_insert(src_2, str_2, 13) = %s\n",
        res_2);
 
 if (res_2) {

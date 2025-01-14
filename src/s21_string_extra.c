@@ -43,19 +43,19 @@ s21_size_t min(s21_size_t a, s21_size_t b) { return (a > b) ? b : a; }
 
 void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
   char *res = S21_NULL;
-  if (src != S21_NULL && str != S21_NULL) {
+  if (src && str) {
     s21_size_t len_src = s21_strlen(src);
     s21_size_t len_str = s21_strlen(str);
-    char *res = allocate_with_memset(len_src + len_str + 1);
+    res = allocate_with_memset(len_src + len_str + 1);
     if (res) {
       start_index = min(start_index, len_src);
-      for (s21_size_t i = 0; i < start_index; ++i) {
+      for (s21_size_t i = 0; i < start_index; i++) {
         res[i] = src[i];
       }
-      for (s21_size_t i = 0; i < len_str; ++i) {
+      for (s21_size_t i = 0; i < len_str; i++) {
         res[i + start_index] = str[i];
       }
-      for (s21_size_t i = start_index; i < len_src; ++i) {
+      for (s21_size_t i = start_index; i < len_src; i++) {
         res[i + len_str] = src[i];
       }
       res[len_str + len_src] = '\0';

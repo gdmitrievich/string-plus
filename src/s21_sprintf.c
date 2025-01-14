@@ -538,7 +538,7 @@ s21_size_t convert_double_num_with_precision_to_str(double num,
 
   const char DOT_AND_CARRY_ONE = '1';
   if (str[0] != DOT_AND_CARRY_ONE)
-    memmove(str, str + 1, n_written + 1);
+    s21_memmove(str, str + 1, n_written + 1);
   else
     ++n_written;
 
@@ -547,7 +547,7 @@ s21_size_t convert_double_num_with_precision_to_str(double num,
 
 s21_size_t write_special_double_value_to_str(char *str,
                                              const char *special_value_as_str) {
-  memmove(str, special_value_as_str, s21_strlen(special_value_as_str));
+  s21_memmove(str, special_value_as_str, s21_strlen(special_value_as_str));
   return s21_strlen(str);
 }
 
@@ -598,7 +598,7 @@ void round_double_given_on_str(char *double_as_str, char *fract_part_ptr,
   *(rounding_point_ptr - has_dot_right_before_rounding_point) = '\0';
 }
 
-void *memmove(void *dest, const void *src, s21_size_t count) {
+void *s21_memmove(void *dest, const void *src, s21_size_t count) {
   // if (!dest || !src || dest == src) return dest;
   if (dest == src)
     return dest;
@@ -766,7 +766,7 @@ void format_str_width(char *str, const p_format_args *pfa_ptr,
     if (pfa_ptr->specified_format_arg_types.flags && pfa_ptr->flags.minus) {
       spaces_ptr += meaningfull_part_len;
     } else {
-      memmove(str + n_spaces, str, meaningfull_part_len);
+      s21_memmove(str + n_spaces, str, meaningfull_part_len);
     }
     s21_memset(spaces_ptr, ' ', n_spaces);
 

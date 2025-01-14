@@ -1,7 +1,7 @@
 #include <check.h>
 #include <stdlib.h>  // For exit status.
 
-#include "../src/s21_trim.h"
+#include "../src/s21_string.h"
 
 #define BUFFSIZE 1024
 

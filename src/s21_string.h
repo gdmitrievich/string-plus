@@ -2,6 +2,8 @@
 #define S21_STRING_H
 
 #include "common.h"
+#include "s21_sprintf.h"
+#include "s21_string_extra.h"
 
 void *s21_memchr(const void *str, int c, s21_size_t n);
 int s21_memcmp(const void *str1, const void *str2, s21_size_t n);
@@ -19,6 +21,6 @@ char *s21_strrchr(const char *str, int c);
 char *s21_strstr(const char *haystack, const char *needle);
 char *s21_strtok(char *str, const char *delim);
 
-#include "s21_sprintf.h"
+
 
 #endif // S21_STRING_H

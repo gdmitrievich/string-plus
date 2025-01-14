@@ -38,7 +38,7 @@ $(TEST_FILE_NAME).c: $(TEST_FILE_NAME).check
 	@ $(CLANG) $(TEST_FILE_NAME).c
 
 gcov_report: $(TEST_FILE_NAME).c
-	@ $(CC) --coverage $(TEST_FILE_NAME).c $(SOURCES)  ../tests/s21_trim_tests.c -o $(TEST_FILE_NAME) $(TEST_LIB)
+	@ $(CC) --coverage $(TEST_FILE_NAME).c $(SOURCES) -o $(TEST_FILE_NAME) $(TEST_LIB)
 	@ ./$(TEST_FILE_NAME)
 	@ lcov -t "$(TEST_FILE_NAME)" -o $(TEST_FILE_NAME).info -c -d .
 	@ genhtml -o report $(TEST_FILE_NAME).info

@@ -138,7 +138,7 @@ s21_size_t fract_part_to_str(double num, char *str);
 void round_double_given_on_str(char *double_as_str, char *fract_part_ptr,
                                unsigned int precision);
 
-void *memmove(void *dest, const void *src, s21_size_t count);
+void *s21_memmove(void *dest, const void *src, s21_size_t count);
 
 int char_to_digit(char ch);
 char digit_to_char(int digit);
