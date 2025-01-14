@@ -259,15 +259,17 @@ static const char *errorList[] = {
 
 void *s21_memchr(const void *str, int c, s21_size_t n) {
   unsigned char *result = S21_NULL;
-  unsigned char *ch = (unsigned char *)str;
-  int flag = 0;
-  while (n > 0 && flag == 0) {
-    if (*ch == c) {
-      result = ch;
-      flag = 1;
+  if (str) {
+    unsigned char *ch = (unsigned char *)str;
+    int flag = 0;
+    while (n > 0 && flag == 0) {
+      if (*ch == c) {
+        result = ch;
+        flag = 1;
+      }
+      ch += 1;
+      n -= 1;
     }
-    ch += 1;
-    n -= 1;
   }
   return result;
 }
@@ -327,18 +329,19 @@ char *s21_strncat(char *dest, const char *src, s21_size_t n) {
 
 char *s21_strchr(const char *str, int c) {
   const char *res = S21_NULL;
-
-  int flag = 0;
-  while (*str != '\0' && flag == 0) {
-    if (*str == (char)c) {
-      res = str;
-      flag = 1;
+  if (str) {
+    int flag = 0;
+    while (*str != '\0' && flag == 0) {
+      if (*str == (char)c) {
+        res = str;
+        flag = 1;
+      }
+      str += 1;
     }
-    str += 1;
-  }
 
-  if (c == '\0') {
-    res = str;
+    if (c == '\0') {
+      res = str;
+    }
   }
   return (char *)res;
 }
@@ -428,7 +431,7 @@ s21_size_t s21_strlen(const char *str) {
 }
 
 char *s21_strpbrk(const char *str1, const char *str2) {
-  int flag = 0;
+  int flag = !str1 || !str2;
   char *result = S21_NULL;
   while (!flag && *str1) {
     const char *temp = str2;
@@ -447,14 +450,16 @@ char *s21_strpbrk(const char *str1, const char *str2) {
 
 char *s21_strrchr(const char *str, int c) {
   const char *res = S21_NULL;
-  while (*str != '\0') {
-    if (*str == (char)c) {
+  if (str) {
+    while (*str != '\0') {
+      if (*str == (char)c) {
+        res = str;
+      }
+      str += 1;
+    }
+    if (c == '\0') {
       res = str;
     }
-    str += 1;
-  }
-  if (c == '\0') {
-    res = str;
   }
   return (char *)res;
 }

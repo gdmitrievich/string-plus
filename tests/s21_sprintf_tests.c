@@ -17,9 +17,9 @@ START_TEST(empty_format_str) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "");
+  int expected_n_written_chars = sprintf(expected_str, "", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "");
+  int actual_n_written_chars = s21_sprintf(actual_str, "", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -30,9 +30,9 @@ START_TEST(plain_text_on_format_str) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str plain text str");
+  int expected_n_written_chars = sprintf(expected_str, "str plain text str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str plain text str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str plain text str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -755,9 +755,9 @@ START_TEST(only_percent) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "%%");
+  int expected_n_written_chars = sprintf(expected_str, "%%", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "%%");
+  int actual_n_written_chars = s21_sprintf(actual_str, "%%", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1068,9 +1068,9 @@ START_TEST(percent_with_width) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "%5%");
+  int expected_n_written_chars = sprintf(expected_str, "%5%", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "%5%");
+  int actual_n_written_chars = s21_sprintf(actual_str, "%5%", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1081,9 +1081,9 @@ START_TEST(spurious_trailing_percent_at_end_of_format) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "%");
+  int expected_n_written_chars = sprintf(expected_str, "%", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "%");
+  int actual_n_written_chars = s21_sprintf(actual_str, "%", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1094,9 +1094,9 @@ START_TEST(conversion_lacks_type_at_end_of_format) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "%12.3l");
+  int expected_n_written_chars = sprintf(expected_str, "%12.3l", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "%12.3l");
+  int actual_n_written_chars = s21_sprintf(actual_str, "%12.3l", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1107,9 +1107,9 @@ START_TEST(order_of_all_flags_specified_multiple_times_on_error) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %++--  2=d str");
+  int expected_n_written_chars = sprintf(expected_str, "str %++--  2=d str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %++--  2=d str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %++--  2=d str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1120,9 +1120,9 @@ START_TEST(order_of_minus_space_flags_specified_multiple_times_on_error) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %--  2=d str");
+  int expected_n_written_chars = sprintf(expected_str, "str %--  2=d str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %--  2=d str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %--  2=d str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1133,9 +1133,9 @@ START_TEST(order_of_plus_space_flags_specified_multiple_times_on_error) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %++  2=d str");
+  int expected_n_written_chars = sprintf(expected_str, "str %++  2=d str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %++  2=d str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %++  2=d str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1146,9 +1146,9 @@ START_TEST(order_of_plus_minus_flags_specified_multiple_times_on_error) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %++--2=d str");
+  int expected_n_written_chars = sprintf(expected_str, "str %++--2=d str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %++--2=d str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %++--2=d str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1159,9 +1159,9 @@ START_TEST(unknown_conversion_type_char_in_flag_position) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %=1.2d str");
+  int expected_n_written_chars = sprintf(expected_str, "str %=1.2d str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %=1.2d str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %=1.2d str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1172,9 +1172,9 @@ START_TEST(negative_precision_error) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %.-3ld str");
+  int expected_n_written_chars = sprintf(expected_str, "str %.-3ld str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %.-3ld str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %.-3ld str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1185,9 +1185,9 @@ START_TEST(unknown_conversion_type_char_in_length_modifier_position) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %l3d str");
+  int expected_n_written_chars = sprintf(expected_str, "str %l3d str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %l3d str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %l3d str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1198,9 +1198,9 @@ START_TEST(unknown_length_modifier) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %yd str");
+  int expected_n_written_chars = sprintf(expected_str, "str %yd str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %yd str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %yd str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1211,9 +1211,9 @@ START_TEST(too_much_len_modifiers_error) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %12lhd str");
+  int expected_n_written_chars = sprintf(expected_str, "str %12lhd str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %12lhd str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %12lhd str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1224,9 +1224,9 @@ START_TEST(unknown_specifier) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %y str");
+  int expected_n_written_chars = sprintf(expected_str, "str %y str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %y str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %y str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1237,9 +1237,9 @@ START_TEST(conversion_lacks_type_at_the_middle_of_format) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %2.3l str");
+  int expected_n_written_chars = sprintf(expected_str, "str %2.3l str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %2.3l str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %2.3l str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1250,9 +1250,9 @@ START_TEST(format_arg_specified_on_the_wrong_order) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "str %2.3l+d str");
+  int expected_n_written_chars = sprintf(expected_str, "str %2.3l+d str", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "str %2.3l+d str");
+  int actual_n_written_chars = s21_sprintf(actual_str, "str %2.3l+d str", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
@@ -1263,9 +1263,9 @@ START_TEST(conversion_lacks_type_at_end_of_format_with_format_error_before) {
   char expected_str[BUFFSIZE];
   char actual_str[BUFFSIZE];
   s21_init_compared_strs(expected_str, actual_str);
-  int expected_n_written_chars = sprintf(expected_str, "%. %23.5");
+  int expected_n_written_chars = sprintf(expected_str, "%. %23.5", S21_NULL);
 
-  int actual_n_written_chars = s21_sprintf(actual_str, "%. %23.5");
+  int actual_n_written_chars = s21_sprintf(actual_str, "%. %23.5", S21_NULL);
 
   ck_assert_str_eq(expected_str, actual_str);
   ck_assert_int_eq(expected_n_written_chars, actual_n_written_chars);
