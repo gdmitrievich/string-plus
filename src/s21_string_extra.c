@@ -46,6 +46,7 @@ void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
   if (src && str) {
     s21_size_t len_src = s21_strlen(src);
     s21_size_t len_str = s21_strlen(str);
+    if (start_index > len_src) return res;
     res = s21_allocate_with_memset(len_src + len_str + 1);
     if (res) {
       start_index = s21_min(start_index, len_src);
