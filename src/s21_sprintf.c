@@ -172,11 +172,10 @@ s21_size_t s21_read_positive_num_from_line(unsigned long long int *read_num_ptr,
   s21_size_t read_len = s21_get_len_of_num_from_line(line);
 
   int power = 0;
-  int digit = 0;
   *read_num_ptr = 0;
   s21_size_t len = read_len;
   while (len > 0) {
-    digit = s21_char_to_digit(line[len - 1]);
+    int digit = s21_char_to_digit(line[len - 1]);
     *read_num_ptr += digit * s21_pow_of_ten(power++);
     --len;
   }
@@ -586,7 +585,7 @@ void *s21_memmove(void *dest, const void *src, s21_size_t count) {
   char *d = (char *)dest;
   const char *s = (const char *)src;
 
-  if (dest < src || src + count <= dest) {
+  if (d < s || s + count <= d) {
     s21_memcpy(dest, src, count);
   } else {
     while (count > 0) {

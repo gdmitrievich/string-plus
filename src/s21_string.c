@@ -467,7 +467,7 @@ char *s21_strrchr(const char *str, int c) {
 char *s21_strstr(const char *haystack, const char *needle) {
   int flag = 0;
   char *result = S21_NULL;
-  if (!flag && *needle == '\0') {
+  if (*needle == '\0') {
     result = (char *)haystack;
     flag = 1;
   }
