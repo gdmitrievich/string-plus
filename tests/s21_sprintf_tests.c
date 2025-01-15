@@ -4,7 +4,7 @@
 #include <stdio.h>   // For sprintf().
 #include <stdlib.h>  // For exit status.
 
-#include "../src/s21_sprintf.h"
+#include "../src/s21_string.h"
 
 #define BUFFSIZE 1024
 
