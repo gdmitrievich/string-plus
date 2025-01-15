@@ -3,9 +3,9 @@
 
 #include "common.h"
 
-char *s21_to_up_low(const char *str, int up_low);
 char *s21_to_upper(const char *str);
 char *s21_to_lower(const char *str);
+char *s21_to_up_low(const char *str, int up_low);
 s21_size_t s21_min(s21_size_t a, s21_size_t b);
 void *s21_insert(const char *src, const char *str, s21_size_t start_index);
 

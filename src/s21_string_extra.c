@@ -2,6 +2,18 @@
 
 #include "s21_string.h"
 
+char *s21_to_upper(const char *str) {
+  if (!str) return S21_NULL;
+  int up_low = 1;
+  return s21_to_up_low(str, up_low);
+}
+
+char *s21_to_lower(const char *str) {
+  if (!str) return S21_NULL;
+  int up_low = 2;
+  return s21_to_up_low(str, up_low);
+}
+
 char *s21_to_up_low(const char *str, int up_low) {
   s21_size_t len = s21_strlen(str);
   char *result = s21_allocate_with_memset(len + 1);
@@ -25,18 +37,6 @@ char *s21_to_up_low(const char *str, int up_low) {
   }
 
   return result;
-}
-
-char *s21_to_upper(const char *str) {
-  if (!str) return S21_NULL;
-  int up_low = 1;
-  return s21_to_up_low(str, up_low);
-}
-
-char *s21_to_lower(const char *str) {
-  if (!str) return S21_NULL;
-  int up_low = 2;
-  return s21_to_up_low(str, up_low);
 }
 
 s21_size_t s21_min(s21_size_t a, s21_size_t b) { return (a > b) ? b : a; }
