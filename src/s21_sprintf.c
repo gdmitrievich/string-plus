@@ -191,9 +191,6 @@ s21_size_t s21_get_len_of_num_from_line(const char *line) {
 }
 
 s21_size_t s21_strspn(const char *dest, const char *src) {
-  // if (!dest || !src) return 0;
-  // return 0;
-
   s21_size_t i = 0;
   while (dest[i] && s21_contains(dest[i], src)) {
     i++;
@@ -580,11 +577,10 @@ void s21_round_double_given_on_str(char *double_as_str, char *fract_part_ptr,
 }
 
 void *s21_memmove(void *dest, const void *src, s21_size_t count) {
-  // if (!dest || !src || dest == src) return dest;
   if (dest == src) return dest;
+
   char *d = (char *)dest;
   const char *s = (const char *)src;
-
   if (d < s || s + count <= d) {
     s21_memcpy(dest, src, count);
   } else {
