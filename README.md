@@ -9,7 +9,6 @@
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Project Experience](#project-experience)
-- [License](#license)
 
 <h2 id="features">Features</h2>
 
@@ -47,7 +46,3 @@ I practised:
 		- The code was written according to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
 	- Error Handling: solution prevents crashes or undefined behaviors.
 	- Modular design allows future enhancements (like supporting additional format specifiers) without disrupting existing functionality.
-
-<h2 id="license">License</h2>
-
-MIT © [Gleb Dmitrievich](https://github.com/gdmitrievich)
